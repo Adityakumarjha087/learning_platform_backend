@@ -7,12 +7,14 @@ import {
   deleteCourse,
   enrollInCourse,
   removeStudent,
+  getEnrolledCourses,
 } from '../controllers/courseController';
 import { protect, restrictTo } from '../middlewares/auth';
 
 const router = express.Router();
 
 // Public routes
+router.get('/enrolled', getEnrolledCourses);
 router.get('/', getCourses);
 router.get('/:id', getCourse);
 
