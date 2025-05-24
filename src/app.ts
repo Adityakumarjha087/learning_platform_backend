@@ -27,6 +27,11 @@ app.use(cors());
 // Serve static files from the uploads directory
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
+// Dummy GET route at base URL for health check
+app.get('/', (req, res) => {
+  res.send('i am live and wokring');
+});
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/courses', courseRoutes);
@@ -57,4 +62,4 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-export default app; 
+export default app;
