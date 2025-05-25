@@ -20,7 +20,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-  origin: 'https://learning-platform-frontend-gray.vercel.app/',
+  origin: 'https://learning-platform-frontend-gray.vercel.app',
   credentials: true,
 }));
 
