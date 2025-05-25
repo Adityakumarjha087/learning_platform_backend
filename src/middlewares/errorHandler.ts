@@ -28,7 +28,6 @@ export const errorHandler = (
     });
   }
 
-  // Programming or other unknown error
   console.error('ERROR 💥', err);
   return res.status(500).json({
     status: 'error',

@@ -5,7 +5,6 @@ import { Section, ISection } from '../models/Section';
 
 const router = express.Router();
 
-// Get all sections for a course
 router.get('/courses/:courseId/sections', authenticateToken, async (req, res) => {
   try {
     const { courseId } = req.params;
@@ -16,7 +15,6 @@ router.get('/courses/:courseId/sections', authenticateToken, async (req, res) =>
   }
 });
 
-// Add a new section to a course
 router.post('/courses/:courseId/sections', authenticateToken, async (req, res) => {
   try {
     const { courseId } = req.params;
@@ -37,7 +35,6 @@ router.post('/courses/:courseId/sections', authenticateToken, async (req, res) =
   }
 });
 
-// Update a section
 router.put('/courses/:courseId/sections/:sectionId', authenticateToken, async (req, res) => {
   try {
     const { courseId, sectionId } = req.params;
@@ -63,7 +60,6 @@ router.put('/courses/:courseId/sections/:sectionId', authenticateToken, async (r
   }
 });
 
-// Delete a section
 router.delete('/courses/:courseId/sections/:sectionId', authenticateToken, async (req, res) => {
   try {
     const { courseId, sectionId } = req.params;
@@ -82,4 +78,4 @@ router.delete('/courses/:courseId/sections/:sectionId', authenticateToken, async
   }
 });
 
-export default router; 
+export default router;

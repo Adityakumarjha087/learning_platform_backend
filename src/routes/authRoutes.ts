@@ -9,12 +9,10 @@ import {
 
 const router = express.Router();
 
-// Public routes
 router.post('/register', register);
 router.post('/login', login);
 router.post('/create-admin', createAdmin);
 
-// Protected routes
 router.get('/me', protect, getMe);
 
-export default router; 
+export default router;

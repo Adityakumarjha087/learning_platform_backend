@@ -22,26 +22,22 @@ export const protect = async (
   next: NextFunction
 ) => {
   try {
-    // 1) Get token from header
     const token = req.headers.authorization?.split(' ')[1];
 
     if (!token) {
       return next(new AppError('Please log in to access this resource', 401));
     }
 
-    // 2) Verify token
     const decoded = jwt.verify(
       token,
       process.env.JWT_SECRET || 'your-super-secret-jwt-key'
     ) as JwtPayload;
 
-    // 3) Check if user still exists
     const user = await User.findById(decoded.id);
     if (!user) {
       return next(new AppError('User no longer exists', 401));
     }
 
-    // 4) Grant access
     req.user = user;
     next();
   } catch (error) {

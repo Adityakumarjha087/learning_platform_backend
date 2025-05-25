@@ -5,7 +5,6 @@ import { Unit, IUnit } from '../models/Unit';
 
 const router = express.Router();
 
-// Get all units for a section
 router.get('/courses/:courseId/sections/:sectionId/units', authenticateToken, async (req, res) => {
   try {
     const { courseId, sectionId } = req.params;
@@ -25,7 +24,6 @@ router.get('/courses/:courseId/sections/:sectionId/units', authenticateToken, as
   }
 });
 
-// Add a new unit to a section
 router.post('/courses/:courseId/sections/:sectionId/units', authenticateToken, async (req, res) => {
   try {
     const { courseId, sectionId } = req.params;
@@ -51,7 +49,6 @@ router.post('/courses/:courseId/sections/:sectionId/units', authenticateToken, a
   }
 });
 
-// Update a unit
 router.put('/courses/:courseId/sections/:sectionId/units/:unitId', authenticateToken, async (req, res) => {
   try {
     const { courseId, sectionId, unitId } = req.params;
@@ -82,7 +79,6 @@ router.put('/courses/:courseId/sections/:sectionId/units/:unitId', authenticateT
   }
 });
 
-// Delete a unit
 router.delete('/courses/:courseId/sections/:sectionId/units/:unitId', authenticateToken, async (req, res) => {
   try {
     const { courseId, sectionId, unitId } = req.params;
@@ -106,4 +102,4 @@ router.delete('/courses/:courseId/sections/:sectionId/units/:unitId', authentica
   }
 });
 
-export default router; 
+export default router;

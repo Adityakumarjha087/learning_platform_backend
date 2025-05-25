@@ -8,26 +8,24 @@ import {
   enrollInCourse,
   removeStudent,
   getEnrolledCourses,
+  getInstructorCourses,
 } from '../controllers/courseController';
 import { protect, restrictTo } from '../middlewares/auth';
+import { checkDbConnection } from '../middlewares/dbCheck';
 
 const router = express.Router();
 
-// Public routes
+router.use(checkDbConnection);
+
 router.get('/enrolled', getEnrolledCourses);
 router.get('/', getCourses);
-router.get('/:id', getCourse);
 
-// Protected routes
-router.use(protect);
+router.get('/instructor', protect, getInstructorCourses);
 
-// Learner routes
-router.post('/:id/enroll', restrictTo('learner'), enrollInCourse);
-
-// Admin routes
 router.post('/', restrictTo('admin'), createCourse);
+router.get('/:id', getCourse);
 router.put('/:id', restrictTo('admin'), updateCourse);
 router.delete('/:id', restrictTo('admin'), deleteCourse);
 router.delete('/:id/students/:studentId', restrictTo('admin'), removeStudent);
 
-export default router; 
+export default router;

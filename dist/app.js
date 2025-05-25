@@ -27,6 +27,10 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 // Serve static files from the uploads directory
 app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, '../uploads')));
+// Dummy GET route at base URL for health check
+app.get('/', (req, res) => {
+    res.send('i am live and wokring');
+});
 // Routes
 app.use('/api/auth', authRoutes_1.default);
 app.use('/api/courses', courseRoutes_1.default);
