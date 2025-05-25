@@ -1,5 +1,11 @@
 import mongoose from 'mongoose';
 
+interface CustomConnectOptions extends mongoose.ConnectOptions {
+  dns?: {
+    lookup: (hostname: string, options: { timeout: number }, callback: (err: NodeJS.ErrnoException | null, address: string, family: number) => void) => void;
+  };
+}
+
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URI || '', {
@@ -12,12 +18,12 @@ const connectDB = async () => {
       retryWrites: true,
       retryReads: true,
       dns: {
-        lookup: (hostname, options, callback) => {
+        lookup: (hostname: string, options: { timeout: number }, callback: (err: NodeJS.ErrnoException | null, address: string, family: number) => void) => {
           const dns = require('dns');
           dns.lookup(hostname, { timeout: 10000 }, callback);
         }
       }
-    });
+    } as CustomConnectOptions);
 
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
